@@ -56,8 +56,10 @@ class SOM(object):
         print("SOM replica_inputs", x_replica.shape)
 
         lr = self.lr * np.exp(-np.arange(0, epochs) / self.decay_steps)
+        mean_loss = 0
         for k in ep_iterator:
-            ep_iterator.set_description(f'Epoch {k+1}/{epochs}')
+            ep_iterator.set_description(f'Epoch {k+1}/{epochs} - Loss: {mean_loss}')
+            mean_loss = 0
             batch_it = tqdm.trange(self.inputs, disable=self.verbose)
             for i in batch_it:
                 diff_x_k = x[i] - self.kernel
@@ -65,7 +67,8 @@ class SOM(object):
                 mx, pos = np.amin(loss), np.argmin(loss)
                 dW = lr[k] * diff_x_k[pos]
                 self.kernel[pos] = self.kernel[pos] + dW
-                batch_it.set_description(f'Epoch {k + 1}/{epochs} - Loss: {mx}')
+                mean_loss += mx
+            mean_loss = mean_loss / self.inputs
 
     def predict(self, x, batch_size=0, verbose=None):
         """
