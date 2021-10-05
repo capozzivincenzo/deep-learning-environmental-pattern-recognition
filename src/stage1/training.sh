@@ -5,7 +5,6 @@
 #SBATCH --gres=gpu:tesla:1
 #SBATCH --output=slurm-%j-%x.out
 
-
 module load anaconda/3
 module load cuda/10.1
 

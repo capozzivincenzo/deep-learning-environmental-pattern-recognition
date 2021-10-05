@@ -1,7 +1,7 @@
 import numpy as np
 from scipy.io import loadmat
-from layers import som, som_cluters, SOM
-from clustering import agglomerative
+from clustering.nec.layers import som, som_cluters, SOM
+from clustering.nec.clustering import agglomerative
 from absl import app
 from absl import flags
 import matplotlib.pyplot as plt

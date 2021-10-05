@@ -1,15 +1,17 @@
 import tensorflow as tf
-from tensorflow.keras.layers import Input, Dense, ReLU
 from tensorflow.keras import Model, Sequential
 import os
 import csv
+import glob
 import argparse
 from datetime import datetime
 from easydict import EasyDict as edict
 
 import numpy as np
+import pandas as pd
 import tqdm
 import yaml
+
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import train_test_split
@@ -19,48 +21,50 @@ from dnn import models as dnn_models
 from clustering import models as c_models
 
 
-__doc__ = """
-0;1;  2;  3;     4;     5;  6; 7;    8;    9;   10;    11;    12;          13;  14;  15;          16;          17;        18
-j;i;T2C;SLP;WSPD10;WDIR10;RH2;UH;MCAPE;TC500;TC850;GPH500;GPH850;CLDFRA_TOTAL;U10M;V10M;DELTA_WSPD10;DELTA_WDIR10;DELTA_RAIN
-"""
+def dataloader(data_path, columns, train_split, test_split=None, fillnan=True):
 
+    def read_dataset(split, verbose_name=None):
+        files = glob.glob(os.path.join(data_path, '*.csv'))
+        df = pd.concat([pd.read_csv(file, usecols=columns)
+                        for file in tqdm.tqdm(files, desc=f'Dataloader: {verbose_name}')
+                        if any(t in file for t in split)], ignore_index=True)
+        print(df.head(5))
 
-def dataloader(data_path, columns):
-    data = []
+        if fillnan:
+            df.fillna(0.0, inplace=True)
 
-    n_files = 0
-    data_files = os.listdir(data_path)
-    for data_file in tqdm.tqdm(data_files[:1]):
+        return np.array(df)
 
-        with open(os.path.join(data_path, data_file)) as csv_file:
-            csv_reader = csv.reader(csv_file, delimiter=';')
-            line_count = 0
-            for row in csv_reader:
-                if line_count > 0:
-                    r = [float(row[columns[c]]) for c in range(len(columns))]
-                    data.append(r)
-                line_count += 1
-        n_files += 1
+    train_data = read_dataset(train_split, 'train data'.upper())
+    test_data = read_dataset(test_split, 'test data') if test_split is not None else None
 
-    return np.array(data)
+    return train_data, test_data
 
 
 def data_preprocessing(data, settings, log_dir, load_scaler=False):
+    train_data = data[0]
+    test_data = data[1]
+
     if settings.DATASET.PREPROCESSING.SCALER == 'standard':
         scaler = StandardScaler()  # Range is not defined, best to use a StandardScaler
     else:
         scaler = MinMaxScaler()
+
     if load_scaler:
         scaler = joblib.load(os.path.join(log_dir, 'scaler.joblib'))
     else:
-        data = scaler.fit_transform(data)
+        scaler = scaler.fit(train_data)
         joblib.dump(scaler, os.path.join(log_dir, 'scaler.joblib'))
 
-    # train test split
-    x_train, x_test, = train_test_split(data, test_size=settings.DATASET.PREPROCESSING.TEST_SIZE,
-                                        random_state=settings.DATASET.PREPROCESSING.RANDOM_SEED)
+    train_data = scaler.transform(train_data)
+    if test_data is None:
+        # train test split
+        train_data, test_data, = train_test_split(train_data, test_size=settings.DATASET.PREPROCESSING.TEST_SIZE,
+                                                  random_state=settings.DATASET.PREPROCESSING.RANDOM_SEED)
+    else:
+        test_data = scaler.transform(test_data)
 
-    return scaler, x_train, x_test
+    return scaler, train_data, test_data
 
 
 def train(model, train_data, settings, log_dir):
@@ -69,7 +73,7 @@ def train(model, train_data, settings, log_dir):
     model.summary()
 
     tb_callback = tf.keras.callbacks.TensorBoard(log_dir, update_freq=10)
-    mc_callback = tf.keras.callbacks.ModelCheckpoint(log_dir, save_best_only=True)
+    mc_callback = tf.keras.callbacks.ModelCheckpoint(log_dir, verbose=1)
 
     # train the model
     model.fit(train_data,
@@ -101,19 +105,34 @@ def args_parse():
 
 
 def main(args):
+    print("==== Phase 0. Loading settings")
     settings = args.settings
     with open(settings, 'r') as file:
         settings = yaml.load(file, Loader=yaml.FullLoader)
 
     settings = edict(settings)
 
+    print("==== Phase 0. Dataloader")
     # Data loading and preprocessing
-    data = dataloader(settings.DATASET.PATH, settings.DATASET.COLUMNS)
-    weights = settings.MODEL.WEIGHTS
-    log_dir = os.path.join(settings.GENERAL.SAVE_PATH, args.name, datetime.now().strftime("%Y%m%d-%H%M%S"))
-    scaler, train_data, test_data = data_preprocessing(data, settings, log_dir, load_scaler=weights)
-    n_features = data.shape[-1] if not settings.DATASET.IS_LABEL else data.shape[-1] - 1
+    data = dataloader(settings.DATASET.PATH, settings.DATASET.COLUMNS,
+                      train_split=settings.DATASET.TRAINING,
+                      test_split=settings.DATASET.TESTING)
 
+    weights = False
+    if settings.GLOBAL.RESUME_PATH:
+        log_dir = settings.GLOBAL.RESUME_PATH
+        weights = log_dir
+    else:
+        log_dir = os.path.join(settings.GLOBAL.SAVE_PATH, settings.MODEL.NAME, datetime.now().strftime('%Y%m%d-%H%M%S'))
+        print(f'Reference path: {log_dir}')
+        if not os.path.exists(log_dir):
+            os.makedirs(log_dir)
+
+    print("==== Phase 0. Preprocessing")
+    scaler, train_data, test_data = data_preprocessing(data, settings, log_dir, load_scaler=weights)
+    n_features = train_data.shape[-1] if not settings.DATASET.IS_LABEL else train_data.shape[-1] - 1
+
+    print(f"==== Phase 1. Building model {settings.MODEL.NAME}")
     # Section 1.
     autoencoder = dnn_models.__dict__[settings.MODEL.NAME](settings.MODEL.ENCODING_DIMS, n_features)
 
@@ -121,25 +140,31 @@ def main(args):
         autoencoder = tf.keras.models.load_model(weights)
         print(f'Restored from: {weights}')
     if settings.MODEL.MODE == 'train':
-        train(autoencoder, train_data, settings.MODEL.SAVE_PATH, log_dir)
-    else:
+        print("==== Phase 1. Model Training")
+        train(autoencoder, train_data, settings, log_dir)
+    elif settings.MODEL.MODE == 'eval':
+        print("==== Phase 1.  Model Evaluation")
         evaluate(autoencoder, scaler, test_data)
 
     # Section 2.
+    print("==== Phase 2. Feature Extraction")
     autoencoder.trainable = False
     feature_extractor = Model(inputs=autoencoder.input,
                               outputs=autoencoder.get_layer('encoder').output)
 
     train_features = feature_extractor.predict(train_data)
 
+    print(f"==== Phase 2. Clustering: {settings.CLUSTERING.NAME}")
     nec_clustering = c_models.__dict__[settings.CLUSTERING.NAME](n_centers=settings.CLUSTERING.N_CENTERS,
                                                                  lr=settings.CLUSTERING.LR,
                                                                  decay_steps=settings.CLUSTERING.DECAY_STEPS,
                                                                  max_epoch=settings.CLUSTERING.MAX_EPOCH)
+    print("==== Phase 2. Clustering fitting")
     nec_clustering.fit(train_features)
     train_ng, train_clusters = nec_clustering.predict(train_features)
     # Visualization?
 
+    print("==== Phase 2. Clustering test predict")
     test_features = feature_extractor.predict(test_data)
     test_ng, test_clusters = nec_clustering.predict(test_features)
     # Visualization?

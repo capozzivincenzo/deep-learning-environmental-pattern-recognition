@@ -1,4 +1,5 @@
-import nec.layers
-import nec.clustering
-import nec.losses
-import nec.plotting
+from . import layers
+from . import clustering
+from . import losses
+from . import plotting
+from . import negentropy_clustering

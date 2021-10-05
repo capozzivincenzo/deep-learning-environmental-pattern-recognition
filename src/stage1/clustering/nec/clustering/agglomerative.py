@@ -1,7 +1,7 @@
 import numpy as np
 from scipy.cluster.hierarchy import fcluster, linkage
-from losses import negentropy
-from plotting import plot_dendrogram
+from clustering.nec.losses import negentropy
+from clustering.nec.plotting import plot_dendrogram
 
 
 def agglomerative(centroids, t=0.5, criterion='distance', method='single', metric='euclidean', plot=False):

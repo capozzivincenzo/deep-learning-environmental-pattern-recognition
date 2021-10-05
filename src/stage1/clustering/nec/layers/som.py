@@ -15,7 +15,7 @@ class SOM(object):
         self.centers = centers
         self.decay_steps = decay_steps
         self.lr = lr
-        self.verbose = verbose
+        self.verbose = not verbose if (verbose or verbose is not None) else False
         self.kernel = None
 
         if input_shape is not None:
@@ -39,47 +39,69 @@ class SOM(object):
         :param epochs: number of epoch to train
         """
         if not self.built:
-            self._build(x.shape[1:])
+            self._build(x.shape)
 
         ep_iterator = tqdm.trange(epochs, disable=self.verbose)
-        R = np.random.permutation(self.patterns)
+        if self.inputs < self.centers:  # Min difference delta?
+            replica_num = np.ceil(self.centers / self.inputs) * np.random.randint(3, 11)
+            x_replica = np.tile(x, (int(replica_num), 1))
+            perm_centers = np.random.permutation(x_replica.shape[0])
+        else:
+            x_replica = x
+            perm_centers = np.random.permutation(self.inputs)
 
-        self.kernel = x[:, R[:self.centers]]
+        self.kernel = x_replica[perm_centers[:self.centers]]
+        print("SOM Kernel", self.kernel.shape)
+        print("SOM inputs", x.shape)
+        print("SOM replica_inputs", x_replica.shape)
 
+        lr = self.lr * np.exp(-np.arange(0, epochs) / self.decay_steps)
         for k in ep_iterator:
-            for i in tqdm.trange(self.patterns, disable=self.verbose):
-                lr = self.lr * np.exp(-k / self.decay_steps)
-                x_c = np.broadcast_to(x[:, i], (self.centers, 2)).T
-                loss = np.linalg.norm(x_c - self.kernel, axis=0)
+            ep_iterator.set_description(f'Epoch {k+1}/{epochs}')
+            batch_it = tqdm.trange(self.inputs, disable=self.verbose)
+            for i in batch_it:
+                diff_x_k = x[i] - self.kernel
+                loss = np.linalg.norm(diff_x_k, axis=1)
                 mx, pos = np.amin(loss), np.argmin(loss)
-                dW = lr * (x[:, i] - self.kernel[:, pos])
-                self.kernel[:, pos] = self.kernel[:, pos] + dW
+                dW = lr[k] * diff_x_k[pos]
+                self.kernel[pos] = self.kernel[pos] + dW
+                batch_it.set_description(f'Epoch {k + 1}/{epochs} - Loss: {mx}')
 
-    def evaluate(self, x):
+    def predict(self, x, batch_size=0, verbose=None):
         """
         :param x: input to evaluate
         :return: Clusters with evaluation of x
         """
-        return self.__call__(x)
+        in_verbose = not verbose if (verbose or verbose is not None) else False
+        if batch_size > 0:
+            batches = np.array_split(x, batch_size)
+            result = []
+            el_batches = tqdm.tqdm(batches, total=batches.shape[0], disable=in_verbose)
+            for batch in el_batches:
+                result.append(self.__call__(batch, verbose=verbose))
+            return result
 
-    def __call__(self, x):
+        return self.__call__(x, verbose=verbose)
+
+    def __call__(self, x, verbose=None):
         """
         :param x: input to evaluate
         :return: Clusters with evaluation of x
         """
 
         if self.kernel is None:
-            raise RuntimeError('Weights are not initialized, please use .fit() before call')
+            raise RuntimeError('Weights are not initialized, please use .fit() before prediction')
 
-        clusters = [np.zeros((2, 0))] * self.centers
+        verbose = not verbose if (verbose or verbose is not None) else False
 
-        for i in range(self.patterns):
-            x_c = np.broadcast_to(x[:, i], (self.centers, 2)).T
-            loss = np.linalg.norm(x_c - self.kernel, axis=0)
+        clusters = [[] for _ in range(self.centers)]
+        el_inputs = tqdm.trange(x.shape[0], desc='Predict', disable=verbose)
+        for i in el_inputs:
+            loss = np.linalg.norm(x[i] - self.kernel, axis=1)
             pos = int(np.argmin(loss))
-            clusters[pos] = np.append(clusters[pos], np.reshape(x[:, i], (-1, 1)))
+            clusters[pos].append(x[i])
 
-        clusters = [np.reshape(cluster, (2, -1)) for cluster in clusters]
+        clusters = [np.array(cluster) for cluster in clusters]
 
         return clusters
 
@@ -114,7 +136,7 @@ def som_cluters(x, W):
     clusters = [np.zeros((2, 0))] * n_clusters
 
     for i in range(n_patterns):
-        x_c = np.broadcast_to(x[:, i], (n_clusters, 2)).T  # (X(i,:).' * ones(1, n_clusters)).' vedere perchè moltiplica per ones
+        x_c = np.broadcast_to(x[:, i], (n_clusters, 2)).T  # (X(i,:).' * ones(1, n_clusters)).'
         loss = np.linalg.norm(x_c - W, axis=0)
         pos = int(np.argmin(loss))  # CHECK AXIS
         clusters[pos] = np.append(clusters[pos], np.reshape(x[:, i], (-1, 1)))
@@ -123,3 +145,12 @@ def som_cluters(x, W):
 
     return clusters
 
+
+if __name__ == '__main__':
+    x = np.random.rand(15, 5)
+    s = SOM(50, 0.1, 10, verbose=True)
+    print("Fitting")
+    s.fit(x, 10)
+    x_test = np.random.rand(500, 5)
+    print("Testing")
+    s.predict(x_test, verbose=True)
