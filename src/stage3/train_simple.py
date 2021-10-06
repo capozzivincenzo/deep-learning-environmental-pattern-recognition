@@ -91,15 +91,7 @@ x_train, x_val, y_train, y_val = train_test_split(x_data, y_data, train_size=0.8
 #     layers.Dense(num_classes)
 # ])
 
-model = tf.keras.Sequential([
-    layers.Conv1D(64, 3, activation='relu', padding="same", use_bias=False, input_shape=(x_data.shape[1:])),
-    layers.BatchNormalization(),
-    layers.Conv1D(128, 3, activation='relu', padding="same", use_bias=False),
-    layers.BatchNormalization(),
-    layers.Flatten(),
-    layers.Dense(1024, activation='relu'),
-    layers.Dense(num_classes)
-])
+
 
 # Softmax activation on output layer
 model.compile(loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),

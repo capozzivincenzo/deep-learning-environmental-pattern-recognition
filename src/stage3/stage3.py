@@ -19,7 +19,6 @@ import joblib
 
 from dnn import models as dnn_models
 from clustering import models as c_models
-import h5py
 
 
 def dataloader(data_path, columns, train_split, test_split=None, fillnan=True):
@@ -132,47 +131,28 @@ def main(args):
     print("==== Phase 0. Preprocessing")
     scaler, train_data, test_data = data_preprocessing(data, settings, log_dir, load_scaler=weights)
     n_features = train_data.shape[-1] if not settings.DATASET.IS_LABEL else train_data.shape[-1] - 1
-
+    n_labels = 0
     print(f"==== Phase 1. Building model {settings.MODEL.NAME}")
     # Section 1.
-    autoencoder = dnn_models.__dict__[settings.MODEL.NAME](settings.MODEL.ENCODING_DIMS, n_features)
+    model = dnn_models.__dict__[settings.MODEL.NAME](train_data.shape[1:], n_labels)
 
     if weights:
-        autoencoder = tf.keras.models.load_model(weights)
+        model = tf.keras.models.load_model(weights)
         print(f'Restored from: {weights}')
     if settings.MODEL.MODE == 'train':
         print("==== Phase 1. Model Training")
-        train(autoencoder, train_data, settings, log_dir)
+        train(model, train_data, settings, log_dir)
     elif settings.MODEL.MODE == 'eval':
         print("==== Phase 1.  Model Evaluation")
-        evaluate(autoencoder, scaler, test_data)
+        evaluate(model, scaler, test_data)
 
     # Section 2.
     print("==== Phase 2. Feature Extraction")
-    autoencoder.trainable = False
-    feature_extractor = Model(inputs=autoencoder.input,
-                              outputs=autoencoder.get_layer('encoder').output)
+    model.trainable = False
+    feature_extractor = Model(inputs=model.input,
+                              outputs=model.get_layer('encoder').output)
 
     train_features = feature_extractor.predict(train_data)
-
-    print(f"==== Phase 2. Clustering: {settings.CLUSTERING.NAME}")
-    nec_clustering = c_models.__dict__[settings.CLUSTERING.NAME](n_centers=settings.CLUSTERING.N_CENTERS,
-                                                                 lr=settings.CLUSTERING.LR,
-                                                                 decay_steps=settings.CLUSTERING.DECAY_STEPS,
-                                                                 max_epoch=settings.CLUSTERING.MAX_EPOCH)
-    print("==== Phase 2. Clustering fitting")
-    nec_clustering.fit(train_features)
-    train_ng, train_clusters = nec_clustering.predict(train_features)
-
-    print("==== Phase 2. Clustering test predict")
-    test_features = feature_extractor.predict(test_data)
-    test_ng, test_clusters = nec_clustering.predict(test_features)
-
-    print("=== Phase 3. Save clustering")
-    with h5py.File(os.path.join(settings.GLOBAL.SAVE_PATH, 'train_clusters.h5'), 'w') as df:
-        df.create_dataset('train', shape=train_clusters.shape, data=train_clusters)
-        df.create_dataset('test', shape=test_clusters.shape, data=test_clusters)
-
 
 
 if __name__ == '__main__':
