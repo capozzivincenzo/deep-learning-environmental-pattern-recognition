@@ -47,12 +47,41 @@ dd
 **Data description**
 
 The labelled dataset is organized in compressed csv files named as follow: DMN/YYYY/MM/wrf5_DMN_YYYYMMDDZHHmm.csv
+
 where:
+
 DMN: model domain name, usually D01, D02, or D03.
+
 YYYY: 4 digits year.
+
 MM: 2 digits month (01, January; 12, December).
+
 DD: 2 digits day of the month (01 is the first of each month).
+
 HH: 2 digits hour of the day in the 00 to 23 range.
+
 mm: 2 digits minte of the hour (usually 00).
 
+Each csv file has the comma (,) as separator and the first line is the header:
+
 j,i,lat,lon,THETA_W850,THETA_E850,GPH850,GPH500,SLP,T2C,RH2,U10M,V10M,TC1000,RH1000,U1000,V1000,TC975,RH975,U975,V975,TC950,RH950,U950,V950,TC925,RH925,U925,V925,TC850,RH850,U850,V850,TC700,RH700,U700,V700,TC500,RH500,U500,V500,TC300,RH300,U300,V300,label
+
+! Label | Description |
+|:-----:|-------------|
+|j||
+|i||
+|lat||
+|lon||
+|:------:|--------------|
+|THETA_W850||
+|THETA_E850||
+|GPH850||
+|GPH500||
+|SLP||
+|T2C||
+|RH2||
+|U10M||
+|V10M||
+|:---:|--------------|
+
+TC1000,RH1000,U1000,V1000,TC975,RH975,U975,V975,TC950,RH950,U950,V950,TC925,RH925,U925,V925,TC850,RH850,U850,V850,TC700,RH700,U700,V700,TC500,RH500,U500,V500,TC300,RH300,U300,V300,label
