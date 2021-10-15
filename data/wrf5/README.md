@@ -112,7 +112,7 @@ j,i,lat,lon,THETA_W850,THETA_E850,GPH850,GPH500,SLP,T2C,RH2,U10M,V10M,TC1000,RH1
 |THETA_E850||
 |GPH850||
 |GPH500||
-|SLP| Air pressure at the sea level (HPa)|
+|SLP| Air pressure at the sea level (hPa)|
 |T2C| Temperature at 2 meters in Celsius degree|
 |RH2| Relative humidity at 2 meters in 0-1 range (0% - 100%)|
 |U10M| West-East wind component at 10 meters (ms^-1, meters per second)|
