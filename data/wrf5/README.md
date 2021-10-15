@@ -6,7 +6,7 @@ WRF is configured using 3 nested domains characterized by 56 vertical levels: D0
 
 The production data is available via OPEnDAP and WMS on http://data.meteo.uniparthenope.it or using a public REST API (http://api.meteo.uniparthenope.it).
 
-The weather patterns have been labeled mainly by Gaetano Genovese advised by Vincenzo Capozzi (https://github.com/capozzivincenzo) during the research work finalized to obtain his MSC in Science and Tecnology of Navigation, using the Weather Lebelling Web Application (WLWA, https://github.com/CCMMMA/Weather-Labeling-Web-Application).
+The weather patterns have been labeled mainly by Gaetano Genovese (https://github.com/gaetano90) advised by Vincenzo Capozzi (https://github.com/capozzivincenzo) during the research work finalized to obtain his MSC in Science and Tecnology of Navigation, using the Weather Lebelling Web Application (WLWA, https://github.com/CCMMMA/Weather-Labeling-Web-Application).
 
 WLWA has been designed by Raffaele Montella (https://github.com/raffmont) and implemented by Rosario Riccio (https://github.com/rosario-riccio) as his Computer Science BSC final work thesis.
 
@@ -42,8 +42,17 @@ On 16 Sept. 2020, the synoptic scenario of the central Mediterranean area was mo
 
 **Labels**
 
-...
+dd
 
 **Data description**
 
-...
+The labelled dataset is organized in compressed csv files named as follow: DMN/YYYY/MM/wrf5_DMN_YYYYMMDDZHHmm.csv
+where:
+DMN: model domain name, usually D01, D02, or D03.
+YYYY: 4 digits year.
+MM: 2 digits month (01, January; 12, December).
+DD: 2 digits day of the month (01 is the first of each month).
+HH: 2 digits hour of the day in the 00 to 23 range.
+mm: 2 digits minte of the hour (usually 00).
+
+j,i,lat,lon,THETA_W850,THETA_E850,GPH850,GPH500,SLP,T2C,RH2,U10M,V10M,TC1000,RH1000,U1000,V1000,TC975,RH975,U975,V975,TC950,RH950,U950,V950,TC925,RH925,U925,V925,TC850,RH850,U850,V850,TC700,RH700,U700,V700,TC500,RH500,U500,V500,TC300,RH300,U300,V300,label
