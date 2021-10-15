@@ -1,5 +1,5 @@
-# deep-learning-weather-pattern-recognition
-A coupled numerical forecast and deep learning prediction model for weather pattern recognition
+# Deep Learning Environmental Pattern Recognition
+A coupled numerical forecast and deep learning prediction model for environmental pattern recognition
 
 **Introduction**
 
