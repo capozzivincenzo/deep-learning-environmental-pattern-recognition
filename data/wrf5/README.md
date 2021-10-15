@@ -42,7 +42,12 @@ On 16 Sept. 2020, the synoptic scenario of the central Mediterranean area was mo
 
 **Labels**
 
-dd
+| Label | Description |
+|:-----:|-------------!
+|0||
+|1||
+|2||
+|3||
 
 **Data description**
 
@@ -69,18 +74,18 @@ j,i,lat,lon,THETA_W850,THETA_E850,GPH850,GPH500,SLP,T2C,RH2,U10M,V10M,TC1000,RH1
 ! Label | Description |
 |:-----:|-------------|
 |j| South-North 0-based index of the data matrix|
-|i| Wesy-Est 0-based index of the data matrix|
+|i| West-East 0-based index of the data matrix|
 |lat| Latitude of the point - for GIS visualization|
 |lon| Longitude of the point - for GIS visualization|
 |THETA_W850||
 |THETA_E850||
 |GPH850||
 |GPH500||
-|SLP||
-|T2C||
-|RH2||
-|U10M||
-|V10M||
+|SLP| Air pressure at the sea level (HPa)|
+|T2C| Temperature at 2 meters in Celsius degree|
+|RH2| Relative humidity at 2 meters in 0-1 range (0% - 100%)|
+|U10M| West-East wind component at 10 meters (ms^-1, meters per second)|
+|V10M| South-North wind component at 10 meters (ms^-1, meters per second)|
 |TC1000||
 |RH1000||
 |U1000||
