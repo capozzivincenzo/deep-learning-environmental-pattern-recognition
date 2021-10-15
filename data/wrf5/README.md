@@ -68,11 +68,10 @@ j,i,lat,lon,THETA_W850,THETA_E850,GPH850,GPH500,SLP,T2C,RH2,U10M,V10M,TC1000,RH1
 
 ! Label | Description |
 |:-----:|-------------|
-|j||
-|i||
-|lat||
-|lon||
-|:------:|--------------|
+|j| South-North 0-based index of the data matrix|
+|i| Wesy-Est 0-based index of the data matrix|
+|lat| Latitude of the point - for GIS visualization|
+|lon| Longitude of the point - for GIS visualization|
 |THETA_W850||
 |THETA_E850||
 |GPH850||
@@ -82,6 +81,36 @@ j,i,lat,lon,THETA_W850,THETA_E850,GPH850,GPH500,SLP,T2C,RH2,U10M,V10M,TC1000,RH1
 |RH2||
 |U10M||
 |V10M||
-|:---:|--------------|
-
-TC1000,RH1000,U1000,V1000,TC975,RH975,U975,V975,TC950,RH950,U950,V950,TC925,RH925,U925,V925,TC850,RH850,U850,V850,TC700,RH700,U700,V700,TC500,RH500,U500,V500,TC300,RH300,U300,V300,label
+|TC1000||
+|RH1000||
+|U1000||
+|V1000||
+|TC975||
+|RH975||
+|U975||
+|V975||
+|TC950||
+|RH950||
+|U950||
+|V950||
+|TC925||
+|RH925||
+|U925||
+|V925||
+|TC850||
+|RH850||
+|U850||
+|V850||
+|TC700||
+|RH700||
+|U700||
+|V700||
+|TC500||
+|RH500||
+|U500||
+|V500||
+|TC300||
+|RH300||
+|U300||
+|V300||
+|label| The label code - see the label table|
