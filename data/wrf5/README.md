@@ -42,8 +42,8 @@ On 16 Sept. 2020, the synoptic scenario of the central Mediterranean area was mo
 
 **Labels**
 
-| Label | Description |
-|:-----:|-------------!
+| Code  | Label       |
+|:-----:|-------------|
 |0||
 |1||
 |2||
@@ -71,7 +71,7 @@ Each csv file has the comma (,) as separator and the first line is the header:
 
 j,i,lat,lon,THETA_W850,THETA_E850,GPH850,GPH500,SLP,T2C,RH2,U10M,V10M,TC1000,RH1000,U1000,V1000,TC975,RH975,U975,V975,TC950,RH950,U950,V950,TC925,RH925,U925,V925,TC850,RH850,U850,V850,TC700,RH700,U700,V700,TC500,RH500,U500,V500,TC300,RH300,U300,V300,label
 
-! Label | Description |
+| Label | Description |
 |:-----:|-------------|
 |j| South-North 0-based index of the data matrix|
 |i| West-East 0-based index of the data matrix|
