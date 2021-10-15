@@ -87,13 +87,13 @@ where:
 
 &nbsp;&nbsp;YYYY: 4 digits year.
 
-  MM: 2 digits month (01, January; 12, December).
+&nbsp;&nbsp;MM: 2 digits month (01, January; 12, December).
 
-  DD: 2 digits day of the month (01 is the first of each month).
+&nbsp;&nbsp;DD: 2 digits day of the month (01 is the first of each month).
 
-  HH: 2 digits hour of the day in the 00 to 23 range.
+&nbsp;&nbsp;HH: 2 digits hour of the day in the 00 to 23 range.
 
-  mm: 2 digits minte of the hour (usually 00).
+&nbsp;&nbsp;mm: 2 digits minte of the hour (usually 00).
 
 
 The compressed file must be decompressed using gunzip or an equivalent software.
