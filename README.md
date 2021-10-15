@@ -19,6 +19,12 @@ Moreover, the new generation of students and scholars can be inspired in finding
 
 **Dataset**
 
+The dataset available here are generated as environmental modeling simulation and forecasts by the Center for Marine and atmosphere Monitoring and Modeling (CMMMA, meteo@uniparthenope, http://meteo.uniparthenope.it) run by the University of Naples "Parthenope" (http://www.uniparthenope.it) and then professionally labeled or automatically labeled.
+
+Each dataset is provided by a detailed description of the data format, of the labels and the use cases for algorithm testing and comparision.
+
+Weather dataset are labeled using the Weather Labeling Web Application (https://github.com/CCMMMA/Weather-Labeling-Web-Application).
+
 **Software**
 
 **References**
