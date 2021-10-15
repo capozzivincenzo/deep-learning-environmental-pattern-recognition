@@ -46,25 +46,25 @@ D01: https://github.com/CCMMMA/deep-learning-weather-pattern-recognition/tree/ma
 **Labels**
 
 | Code  |Abbr| Label       |
-|:-----:||:--:|-------------|
+|:-----:|:--:|-------------|
 |1|MC|Medicane
-|2||Warm Core Seclusion
-|3||Low Pressure Center
-|4||High Pressure Center
-|5||Cold Front
-|6||Line of instability
-|7||Warm Front
-|8||Occluded Front
-|9||Warm Conveyor Belt Rearward
-|10||Warm Conveyor Belt Forward
-|11||Upper Level Trough
-|12||Cut-off
-|13||Thunderstorm
-|14||V-Shaped Storm
-|15||Squall Line
-|16||Low Level Winds Convergence
-|17||Precipitation
-|18||Oragraphic Precipitation
+|2|WCS|Warm Core Seclusion
+|3|LP|Low Pressure Center
+|4|HP|High Pressure Center
+|5|CF|Cold Front
+|6|LOI|Line of instability
+|7|WF|Warm Front
+|8|OF|Occluded Front
+|9|WCBR|Warm Conveyor Belt Rearward
+|10|WCBF|Warm Conveyor Belt Forward
+|11|TR|Upper Level Trough
+|12|CO|Cut-off
+|13|TS|Thunderstorm
+|14|VS|V-Shaped Storm
+|15|SL|Squall Line
+|16|LLW|Low Level Winds Convergence
+|17|PR|Precipitation
+|18|OPR|Oragraphic Precipitation
 
 
 **Data description**
