@@ -83,17 +83,17 @@ The labelled dataset is organized in compressed csv files named as follow: DMN/Y
 
 where:
 
-DMN: model domain name, usually D01, D02, or D03.
+  DMN: model domain name, usually D01, D02, or D03.
 
-YYYY: 4 digits year.
+  YYYY: 4 digits year.
 
-MM: 2 digits month (01, January; 12, December).
+  MM: 2 digits month (01, January; 12, December).
 
-DD: 2 digits day of the month (01 is the first of each month).
+  DD: 2 digits day of the month (01 is the first of each month).
 
-HH: 2 digits hour of the day in the 00 to 23 range.
+  HH: 2 digits hour of the day in the 00 to 23 range.
 
-mm: 2 digits minte of the hour (usually 00).
+  mm: 2 digits minte of the hour (usually 00).
 
 
 The compressed file must be decompressed using gunzip or an equivalent software.
