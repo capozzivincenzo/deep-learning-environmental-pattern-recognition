@@ -83,9 +83,9 @@ The labelled dataset is organized in compressed csv files named as follow: DMN/Y
 
 where:
 
-  DMN: model domain name, usually D01, D02, or D03.
+&nbsp;&nbsp;DMN: model domain name, usually D01, D02, or D03.
 
-  YYYY: 4 digits year.
+&nbsp;&nbsp;YYYY: 4 digits year.
 
   MM: 2 digits month (01, January; 12, December).
 
