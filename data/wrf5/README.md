@@ -13,6 +13,8 @@ In the period from 06 to 09 November, the central and western Mediterranean basi
 
 D01: https://github.com/CCMMMA/deep-learning-weather-pattern-recognition/tree/main/data/wrf5/d01/2011/11
 
+D02: https://github.com/CCMMMA/deep-learning-weather-pattern-recognition/tree/main/data/wrf5/d02/2011/11
+
 * 12-15/04/2012:
 In the middle of April 2012, a low-pressure system affected the western and central Mediterranean basins, causing heavy precipitation events in the Italian peninsula. The low-pressure area developed in response to an oscillation of polar front, which caused an advection of cold polar air masses on the western Mediterranean area. On Apr. 12, a surface low-pressure system developed in Algerian territory and moved northeasterly towards the strait of Sicily. Crossing the Tyrrhenian Sea, the cyclone exhibited the features of a TLC, such as the warm core at mid-tropospheric levels and the alignment between the surface and upper lows. After making landfall on the Italian Peninsula, the system weakened and became warm-core seclusion. It is important highlighting that this storm, named Lucia, was the first TLC that occurred in the Mediterranean area in the spring season.  
 
@@ -23,10 +25,14 @@ On Nov. 05, 2014, a very elongated trough extended from northern Europe to the n
 
 D01: https://github.com/CCMMMA/deep-learning-weather-pattern-recognition/tree/main/data/wrf5/d01/2014/11
 
+D02: https://github.com/CCMMMA/deep-learning-weather-pattern-recognition/tree/main/data/wrf5/d02/2014/11
+
 * 27-30/10/2018:
 At the end of October 2018, a deep trough affected Western Europe elongating from Scandinavia to the Iberian Peninsula. In response to the upper-level disturbance, that forces a cold air outbreak, a surface cyclone took place over the western side of the Mediterranean. During 27 and 28 October, the trough extended over the northern sector of Africa and triggered an intense, moist, and warm meridional flow that interacted with the Italian orography. Because of this synoptic setup, a large amount of rainfall was observed near the Apennine Mountains and in the central and eastern Alps. A second relevant rainfall event took place on Oct. 29, when the cold front associated with the cyclone entered the Mediterranean basin. The sharp contrast between different air masses produced an intensification of the low-level cyclone (up to 985 hPa), which result in the formation of intense convective systems.   
 
 D01: https://github.com/CCMMMA/deep-learning-weather-pattern-recognition/tree/main/data/wrf5/d01/2018/09
+
+D02: https://github.com/CCMMMA/deep-learning-weather-pattern-recognition/tree/main/data/wrf5/d02/2018/09
 
 * 26-30/11/2018:
 At the end of September 2018, a TLC system, named Zorbas, affected the central and eastern Mediterranean basins, generating intense rainfall events over the Gulf of Sirte and Greece. The synoptic scenario that forced the genesis of Zorbas was characterized by a strong anticyclonic area over western and Central Europe and by a trough over Russia and the Balkan Peninsula, associated with a high level of PV. On 27 Sept, a cut-off developed across the Ionian Sea and cyclogenesis occurred in the Gulf of Sirte. Initially, the cyclone has a classical cold-core structure; subsequently, moving on the very warm Mediterranean Sea, it rapidly intensified due to intense diabatic processes, experiencing a gradual transition to a warm core structure. The maximum intensity (987 hPa) was observed at 00 UTC of Sept. 28. Zorbas made landfall in the morning hours of Sept. 29 in Greece and definitively lost tropical features on Oct. 01. 
@@ -44,6 +50,10 @@ On 16 Sept. 2020, the synoptic scenario of the central Mediterranean area was mo
 D01: https://github.com/CCMMMA/deep-learning-weather-pattern-recognition/tree/main/data/wrf5/d01/2020/09
 
 **Labels**
+
+The dataset is focused on the sinoptic weather component over the Mediterranean basin.
+
+18 weather patterns have been selected: 
 
 | Code  |Abbr| Label       |
 |:-----:|:--:|-------------|
@@ -69,7 +79,7 @@ D01: https://github.com/CCMMMA/deep-learning-weather-pattern-recognition/tree/ma
 
 **Data description**
 
-The labelled dataset is organized in compressed csv files named as follow: DMN/YYYY/MM/wrf5_DMN_YYYYMMDDZHHmm.csv
+The labelled dataset is organized in compressed csv files named as follow: DMN/YYYY/MM/wrf5_DMN_YYYYMMDDZHHmm.csv.gz
 
 where:
 
@@ -84,6 +94,9 @@ DD: 2 digits day of the month (01 is the first of each month).
 HH: 2 digits hour of the day in the 00 to 23 range.
 
 mm: 2 digits minte of the hour (usually 00).
+
+
+The compressed file must be decompressed using gunzip or an equivalent software.
 
 Each csv file has the comma (,) as separator and the first line is the header:
 
