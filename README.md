@@ -21,7 +21,7 @@ Moreover, the new generation of students and scholars can be inspired in finding
 
 **Software**
 
-**How to cite**
+**References**
 
 In the world of Academia providing the correct citation is the gold coin used to gratify the scholars who contributed to this data and software repository. The following publications can be considered as a reference to this intriguing and ongoing research line.
 
