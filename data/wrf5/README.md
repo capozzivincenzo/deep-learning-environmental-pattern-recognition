@@ -31,3 +31,11 @@ On Nov. 10, 2019, an upper-level trough, extended from northern Europe to wester
 
 * 15-20/09/2020:
 On 16 Sept. 2020, the synoptic scenario of central Mediterranean area was modulated by a cut-off, clearly recognizable from the analysis of mid and upper troposphere meteorological fields. The cut-off was associated to a surface low-pressure area, located over the Gulf of Sirte. At this stage, the cyclonic area has a pronounced tilting and, therefore, it was not already classifiable as TLC. The alignment between low and upper-level lows occurred on Sept. 17, when the vortex exhibited the classical shape of a TLC, which was named Ianos. The intensification of the cyclone can be primarily ascribed to an upper level intrusion of dry stratospheric air at upper level. Ianos made landfall on western coastal sectors of Greece on 00 UTC of Sept. 18, when at its center the air pressure dropped to 990 hPa. Subsequently, the cyclonic system lost energy and evolved into an extratropical system.  
+
+**Labels**
+
+...
+
+**Data description**
+
+...
