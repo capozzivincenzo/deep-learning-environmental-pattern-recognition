@@ -16,32 +16,56 @@ D01: https://github.com/CCMMMA/deep-learning-weather-pattern-recognition/tree/ma
 * 12-15/04/2012:
 In the middle of April 2012, a low-pressure system affected the western and central Mediterranean basins, causing heavy precipitation events in the Italian peninsula. The low-pressure area developed in response to an oscillation of polar front, which caused an advection of cold polar air masses on the western Mediterranean area. On Apr. 12, a surface low-pressure system developed in Algerian territory and moved northeasterly towards the strait of Sicily. Crossing the Tyrrhenian Sea, the cyclone exhibited the features of a TLC, such as the warm core at mid-tropospheric levels and the alignment between the surface and upper lows. After making landfall on the Italian Peninsula, the system weakened and became warm-core seclusion. It is important highlighting that this storm, named Lucia, was the first TLC that occurred in the Mediterranean area in the spring season.  
 
-D01 https://github.com/CCMMMA/deep-learning-weather-pattern-recognition/tree/main/data/wrf5/d01/2012/04
+D01: https://github.com/CCMMMA/deep-learning-weather-pattern-recognition/tree/main/data/wrf5/d01/2012/04
 
 * 05-09/11/2014:
 On Nov. 05, 2014, a very elongated trough extended from northern Europe to the northern sector of Algeria, bringing cold air in the western Mediterranean basin. At surface levels, a cyclonic circulation developed across the central and western Mediterranean, whereas the eastern sectors were affected by a high-pressure system. On a subsequent day (Nov. 06), the frontal systems (cold and warm fronts) associated with the cyclonic area were reinforced due to the incoming of warmer and moist air masses from North Africa. The low-pressure area moved towards the Sicily Strait, where, in the morning of Nov. 07 rapidly deepened, evolving in a TLC with spiral rain bands and a cloudless eye-like center. From a synoptic point of view, the transition to a tropical structure is well represented by the alignment of upper-level Potential Vorticity (PV) trough and low-level cyclone, which strengthened the PV transfer from above and the instability in the low-levels. The TLC, named Quendresa, made landfall at Malta during the afternoon of Nov. 07 and then moved northeastwards, losing the TLP appearance on 12:00 UTC of Nov. 08.
 
+D01: https://github.com/CCMMMA/deep-learning-weather-pattern-recognition/tree/main/data/wrf5/d01/2014/11
+
 * 27-30/10/2018:
 At the end of October 2018, a deep trough affected Western Europe elongating from Scandinavia to the Iberian Peninsula. In response to the upper-level disturbance, that forces a cold air outbreak, a surface cyclone took place over the western side of the Mediterranean. During 27 and 28 October, the trough extended over the northern sector of Africa and triggered an intense, moist, and warm meridional flow that interacted with the Italian orography. Because of this synoptic setup, a large amount of rainfall was observed near the Apennine Mountains and in the central and eastern Alps. A second relevant rainfall event took place on Oct. 29, when the cold front associated with the cyclone entered the Mediterranean basin. The sharp contrast between different air masses produced an intensification of the low-level cyclone (up to 985 hPa), which result in the formation of intense convective systems.   
 
+D01: https://github.com/CCMMMA/deep-learning-weather-pattern-recognition/tree/main/data/wrf5/d01/2018/09
 
 * 26-30/11/2018:
 At the end of September 2018, a TLC system, named Zorbas, affected the central and eastern Mediterranean basins, generating intense rainfall events over the Gulf of Sirte and Greece. The synoptic scenario that forced the genesis of Zorbas was characterized by a strong anticyclonic area over western and Central Europe and by a trough over Russia and the Balkan Peninsula, associated with a high level of PV. On 27 Sept, a cut-off developed across the Ionian Sea and cyclogenesis occurred in the Gulf of Sirte. Initially, the cyclone has a classical cold-core structure; subsequently, moving on the very warm Mediterranean Sea, it rapidly intensified due to intense diabatic processes, experiencing a gradual transition to a warm core structure. The maximum intensity (987 hPa) was observed at 00 UTC of Sept. 28. Zorbas made landfall in the morning hours of Sept. 29 in Greece and definitively lost tropical features on Oct. 01. 
 
+D01: https://github.com/CCMMMA/deep-learning-weather-pattern-recognition/tree/main/data/wrf5/d01/2018/10
+
 * 10-14/11/2019:
-On Nov. 10, 2019, an upper-level trough, extended from northern Europe to western Mediterranean basins, generated a surface cyclonic area between the Balearic Islands and Sardinia. A ridge, located over eastern Mediterranean sectors, obstructed the natural eastward movement of the low-pressure system. On Nov. 11, the trough evolved into a cut-off and a strong convective activity took place within the low-pressure area, which translated towards northern Africa. The system, at the end of Nov. 11, showed a morphology typical of a TLC, exhibiting a warm core and a well-defined “eye”, as well as a relevant convective band. However, in the early morning of Nov. 12, it lose, at least in part, the tropical features and it was declassed to warm core seclusion. Subsequently, the low-pressure area gets in phase with a new trough, elongating from northern Europe to central Mediterranean basins, and caused on Nov. 13 and 14 relevant precipitation events over the Italian peninsula, Balkans and Austria.  
+On Nov. 10, 2019, an upper-level trough, extended from northern Europe to western Mediterranean basins, generated a surface cyclonic area between the Balearic Islands and Sardinia. A ridge, located over eastern Mediterranean sectors, obstructed the natural eastward movement of the low-pressure system. On Nov. 11, the trough evolved into a cut-off and a strong convective activity took place within the low-pressure area, which translated towards northern Africa. The system, at the end of Nov. 11, showed a morphology typical of a TLC, exhibiting a warm core and a well-defined “eye”, as well as a relevant convective band. However, in the early morning of Nov. 12, it lose, at least in part, the tropical features and it was declassed to warm core seclusion. Subsequently, the low-pressure area gets in phase with a new trough, elongating from northern Europe to central Mediterranean basins, and caused on Nov. 13 and 14 relevant precipitation events over the Italian peninsula, Balkans and Austria.
+
+D01: https://github.com/CCMMMA/deep-learning-weather-pattern-recognition/tree/main/data/wrf5/d01/2019/11
 
 * 15-20/09/2020:
-On 16 Sept. 2020, the synoptic scenario of the central Mediterranean area was modulated by a cut-off, clearly recognizable from the analysis of mid and upper troposphere meteorological fields. The cut-off was associated with a surface low-pressure area, located over the Gulf of Sirte. At this stage, the cyclonic area has a pronounced tilting and, therefore, it was not already classifiable as TLC. The alignment between low and upper-level lows occurred on Sept. 17, when the vortex exhibited the classical shape of a TLC, which was named Ianos. The intensification of the cyclone can be primarily ascribed to an upper-level intrusion of dry stratospheric air at the upper level. Ianos made landfall on western coastal sectors of Greece on 00 UTC of Sept. 18, when at its center the air pressure dropped to 990 hPa. Subsequently, the cyclonic system lost energy and evolved into an extratropical system.  
+On 16 Sept. 2020, the synoptic scenario of the central Mediterranean area was modulated by a cut-off, clearly recognizable from the analysis of mid and upper troposphere meteorological fields. The cut-off was associated with a surface low-pressure area, located over the Gulf of Sirte. At this stage, the cyclonic area has a pronounced tilting and, therefore, it was not already classifiable as TLC. The alignment between low and upper-level lows occurred on Sept. 17, when the vortex exhibited the classical shape of a TLC, which was named Ianos. The intensification of the cyclone can be primarily ascribed to an upper-level intrusion of dry stratospheric air at the upper level. Ianos made landfall on western coastal sectors of Greece on 00 UTC of Sept. 18, when at its center the air pressure dropped to 990 hPa. Subsequently, the cyclonic system lost energy and evolved into an extratropical system.
+
+D01: https://github.com/CCMMMA/deep-learning-weather-pattern-recognition/tree/main/data/wrf5/d01/2020/09
 
 **Labels**
 
-| Code  | Label       |
-|:-----:|-------------|
-|0||
-|1||
-|2||
-|3||
+| Code  |Abbr| Label       |
+|:-----:||:--:|-------------|
+|1|MC|Medicane
+|2||Warm Core Seclusion
+|3||Low Pressure Center
+|4||High Pressure Center
+|5||Cold Front
+|6||Line of instability
+|7||Warm Front
+|8||Occluded Front
+|9||Warm Conveyor Belt Rearward
+|10||Warm Conveyor Belt Forward
+|11||Upper Level Trough
+|12||Cut-off
+|13||Thunderstorm
+|14||V-Shaped Storm
+|15||Squall Line
+|16||Low Level Winds Convergence
+|17||Precipitation
+|18||Oragraphic Precipitation
+
 
 **Data description**
 
