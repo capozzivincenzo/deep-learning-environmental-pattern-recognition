@@ -6,7 +6,7 @@ WRF is configured using 3 nested domains characterized by 56 vertical levels: D0
 
 The production data is available via OPEnDAP and WMS on http://data.meteo.uniparthenope.it or using a public REST API (http://api.meteo.uniparthenope.it).
 
-The weather patterns have been labeled mainly by Gaetano Genovese advised by Vincenzo Capozzi during the research work finalized to obtain his MSC using the Weather Lebelling Web Application (WLWA, https://github.com/CCMMMA/Weather-Labeling-Web-Application).
+The weather patterns have been labeled mainly by Gaetano Genovese advised by Vincenzo Capozzi (https://github.com/capozzivincenzo) during the research work finalized to obtain his MSC in Science and Tecnology of Navigation, using the Weather Lebelling Web Application (WLWA, https://github.com/CCMMMA/Weather-Labeling-Web-Application).
 
 WLWA has been designed by Raffaele Montella (https://github.com/raffmont) and implemented by Rosario Riccio (https://github.com/rosario-riccio) as his Computer Science BSC final work thesis.
 
